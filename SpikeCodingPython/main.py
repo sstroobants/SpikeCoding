@@ -175,7 +175,7 @@ if __name__ == '__main__':
 
     number_of_neurons_grf = 15
 
-    nb_neurons_BOHTE = 15
+    nb_neurons_BOHTE = 10
     nb_timesteps_BOHTE = 10
     beta_BOHTE = 1.5
 
@@ -214,7 +214,10 @@ if __name__ == '__main__':
             plt.title("Bohté et al. (2002) GRF")
 
         plt.subplot(3*len(S),3,9+i*3*len(S))
-        # TODO: add plot
+        time_BOHTE = np.arange(0, T_max, dt/nb_timesteps_BOHTE)
+        for k in range(len(time_BOHTE)):
+            if np.argmax(spikes_BOHTE[k, :]) > 0:
+                plt.plot([time_BOHTE[k], time_BOHTE[k]], [np.argmax(spikes_BOHTE[k,:])-0.35, np.argmax(spikes_BOHTE[k,:])+0.35])
         plt.gca().axes.get_xaxis().set_visible(False)
         plt.gca().axes.get_yaxis().set_visible(False)
 
